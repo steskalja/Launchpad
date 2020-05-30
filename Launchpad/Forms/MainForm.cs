@@ -20,6 +20,7 @@ namespace Launchpad.Forms
         private string _missionPatchLink;
         private readonly List<LaunchInfo> _missionsData;
         private int _indexOfMission;
+        private string _missionName;
 
         //
 
@@ -30,10 +31,7 @@ namespace Launchpad.Forms
             toolTip.SetToolTip(currentMissionButton, "Display information about current mission");
             toolTip.SetToolTip(nextMissionButton, "Go to next mission");
             toolTip.SetToolTip(missionPatchImageLabel, "Click to enlarge");
-            toolTip.SetToolTip(missionNameLabel, "Click to show");
             toolTip.SetToolTip(missionDetailsLabel, "Click to show");
-            toolTip.SetToolTip(vehicleStatusLabel, "Click to show");
-            toolTip.SetToolTip(missionStatusLabel, "Click to show");
         }
         
         private void EnableControls()
@@ -54,10 +52,7 @@ namespace Launchpad.Forms
         
         private void ShowMissionDetailsForm(string content)
         {
-            var textReaderForm = new MissionDetailsForm(content) {StartPosition = FormStartPosition.Manual};
-            textReaderForm.SetDesktopLocation(Location.X + Width - 15, Location.Y);
-            textReaderForm.ShowDialog();
-
+            new MissionDetailsForm(content).ShowDialog();
         }
         
         //
@@ -73,7 +68,7 @@ namespace Launchpad.Forms
             //
             _missionPatchLink = _missionsData[missionNumber].Links.MissionPatch;
             var missionPatchImage = _missionsData[missionNumber].Links.MissionPatchSmall;
-            var missionName = _missionsData[missionNumber].MissionName;
+            _missionName = _missionsData[missionNumber].MissionName;
             var missionDetails = _missionsData[missionNumber].Details;
             var vehiclesStatus = _missionsData[missionNumber].Upcoming;
             var launchStatus = _missionsData[missionNumber].LaunchSuccess;
@@ -84,10 +79,10 @@ namespace Launchpad.Forms
             }
             else
             {
-                missionPatchImageLabel.Image = Task.Run(() => HttpUtil.StreamUrlToImage(missionPatchImage)).Result;
+                missionPatchImageLabel.Image = Task.Run(() => HttpUtil.StreamUrlToImageAndResize(missionPatchImage, 256, 256)).Result;
             }
 
-            missionNameLabel.Text = string.IsNullOrWhiteSpace(missionName) ? "— No mission name —" : missionName;
+            missionNameLabel.Text = string.IsNullOrWhiteSpace(_missionName) ? "— No mission name —" : _missionName;
 
             missionDetailsLabel.Text =
                 string.IsNullOrWhiteSpace(missionDetails) ? "— No mission details —" : missionDetails;
@@ -154,34 +149,19 @@ namespace Launchpad.Forms
             if (!string.IsNullOrWhiteSpace(_missionPatchLink))
             {
                 missionPatchImageLabel.Enabled = false;
-                new MissionPatchForm(_missionPatchLink, 512, 512).ShowDialog();
+                new MissionPatchForm(_missionName, _missionPatchLink, 512, 512).ShowDialog();
                 missionPatchImageLabel.Enabled = true;
             }
             else
             {
-                MessageBox.Show("Mission patch is unavailable to enlarge!", "—Launchpad—",
+                MessageBox.Show("Mission patch is not available to enlarge!", "—Launchpad—",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-        }
-
-        private void missionNameLabel_Click(object sender, EventArgs e)
-        {
-            ShowMissionDetailsForm(missionNameLabel.Text);
         }
 
         private void missionDetailsLabel_Click(object sender, EventArgs e)
         {
             ShowMissionDetailsForm(missionDetailsLabel.Text);
-        }
-
-        private void vehicleStatusLabel_Click(object sender, EventArgs e)
-        {
-            ShowMissionDetailsForm(vehicleStatusLabel.Text);
-        }
-
-        private void missionStatusLabel_Click(object sender, EventArgs e)
-        {
-            ShowMissionDetailsForm(missionStatusLabel.Text);
         }
 
         private void missionDataButton_Click(object sender, EventArgs e)

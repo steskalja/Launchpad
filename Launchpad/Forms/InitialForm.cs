@@ -17,18 +17,25 @@ namespace Launchpad.Forms
         {
             await Task.Run(() =>
             {
-                var appData = new HttpClient().GetAsync("https://launchpadx.herokuapp.com/api/update").Result;
-                if (appData.StatusCode == HttpStatusCode.OK)
+                try
                 {
-                    var json = JObject.Parse(appData.Content.ReadAsStringAsync().Result);
-                    var newAppVer = (string)json.SelectToken("currentVersion");
-                    var currentAppVer = Application.ProductVersion.Remove(3);
-                    if (newAppVer != currentAppVer)
+                    var appData = new HttpClient().GetAsync("https://launchpadx.herokuapp.com/api/update").Result;
+                    if (appData.StatusCode == HttpStatusCode.OK)
                     {
-                        MessageBox.Show($"New version is available and ready to use!\nFor more information please visit https://github.com/skyffx/Launchpad" +
-                                        $"\n\nYour current version: {currentAppVer}\nNew version: {newAppVer}",
-                            "—Launchpad—", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        var json = JObject.Parse(appData.Content.ReadAsStringAsync().Result);
+                        var newAppVer = (string)json.SelectToken("currentVersion");
+                        var currentAppVer = Application.ProductVersion.Remove(3);
+                        if (newAppVer != currentAppVer)
+                        {
+                            MessageBox.Show($"New version is available and ready to use!\n\nFor more information please visit: https://github.com/skyffx/Launchpad" +
+                                            $"\n\nYour current version: {currentAppVer}\nNew version: {newAppVer}",
+                                "—Launchpad—", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                     }
+                }
+                catch (Exception)
+                {
+                    // ignored
                 }
                 //
                 var response = new HttpClient().GetAsync("https://api.spacexdata.com/v3/").Result;
@@ -66,12 +73,11 @@ namespace Launchpad.Forms
             get
             {
                 var cp = base.CreateParams;
-                cp.ExStyle |= 0x00080000; // Required: set WS_EX_LAYERED extended style
+                cp.ExStyle |= 0x00080000;
                 return cp;
             }
         }
-
-        //Updates the Form's display using API calls
+        
         private void UpdateFormDisplay(Image backgroundImage)
         {
             var screenDc = API.GetDC(IntPtr.Zero);
@@ -81,17 +87,14 @@ namespace Launchpad.Forms
 
             try
             {
-                //Display-image
                 var bmp = new Bitmap(backgroundImage);
-                hBitmap = bmp.GetHbitmap(Color.FromArgb(0));  //Set the fact that background is transparent
+                hBitmap = bmp.GetHbitmap(Color.FromArgb(0));
                 oldBitmap = API.SelectObject(memDc, hBitmap);
-
-                //Display-rectangle
+                
                 var size = bmp.Size;
                 var pointSource = new Point(0, 0);
                 var topPos = new Point(this.Left, this.Top);
-
-                //Set up blending options
+                
                 var blend = new API.BLENDFUNCTION
                 {
                     BlendOp = API.AC_SRC_OVER,
@@ -101,8 +104,7 @@ namespace Launchpad.Forms
                 };
 
                 API.UpdateLayeredWindow(this.Handle, screenDc, ref topPos, ref size, memDc, ref pointSource, 0, ref blend, API.ULW_ALPHA);
-
-                //Clean-up
+                
                 bmp.Dispose();
                 API.ReleaseDC(IntPtr.Zero, screenDc);
                 if (hBitmap != IntPtr.Zero)

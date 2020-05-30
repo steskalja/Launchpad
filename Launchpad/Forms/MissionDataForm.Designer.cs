@@ -148,7 +148,7 @@ namespace Launchpad.Forms
             this.launchDateLabel.AutoEllipsis = true;
             this.launchDateLabel.Font = new Font("Verdana", 8F, FontStyle.Bold);
             this.launchDateLabel.Location = new Point(12, 423);
-            this.launchDateLabel.Size = new Size(300, 14);
+            this.launchDateLabel.Size = new Size(300, 40);
             this.launchDateLabel.TextAlign = ContentAlignment.TopCenter;
             //
             // launchSiteHeaderLabel
@@ -157,7 +157,7 @@ namespace Launchpad.Forms
                 ((AnchorStyles) ((((AnchorStyles.Top | AnchorStyles.Bottom) | AnchorStyles.Left) | AnchorStyles.Right)));
             this.launchSiteHeaderLabel.AutoEllipsis = true;
             this.launchSiteHeaderLabel.Font = new Font("Tahoma", 8F, FontStyle.Underline);
-            this.launchSiteHeaderLabel.Location = new Point(12, 449);
+            this.launchSiteHeaderLabel.Location = new Point(12, 475);
             this.launchSiteHeaderLabel.Size = new Size(300, 14);
             this.launchSiteHeaderLabel.Text = "__LAUNCH SITE__";
             this.launchSiteHeaderLabel.TextAlign = ContentAlignment.TopCenter;
@@ -168,7 +168,7 @@ namespace Launchpad.Forms
                 ((AnchorStyles) ((((AnchorStyles.Top | AnchorStyles.Bottom) | AnchorStyles.Left) | AnchorStyles.Right)));
             this.launchSiteNameLabel.AutoEllipsis = true;
             this.launchSiteNameLabel.Font = new Font("Verdana", 8F, FontStyle.Bold);
-            this.launchSiteNameLabel.Location = new Point(12, 468);
+            this.launchSiteNameLabel.Location = new Point(12, 494);
             this.launchSiteNameLabel.Size = new Size(418, 14);
             this.launchSiteNameLabel.TextAlign = ContentAlignment.TopLeft;
             //
@@ -184,11 +184,11 @@ namespace Launchpad.Forms
             this.mediaImageLabel.Anchor =
                 ((AnchorStyles) ((((AnchorStyles.Top | AnchorStyles.Bottom) | AnchorStyles.Left) | AnchorStyles.Right)));
             this.mediaImageLabel.Location = new Point(12, 48);
-            this.mediaImageLabel.Size = new Size(418, 405);
+            this.mediaImageLabel.Size = new Size(418, 430);
             //
             // nextImageButton
             //
-            this.nextImageButton.Location = new Point(255, 466);
+            this.nextImageButton.Location = new Point(255, 491);
             this.nextImageButton.Size = new Size(42, 22);
             this.nextImageButton.TabIndex = 2;
             this.nextImageButton.Image = (Image) _resources.GetObject("$this.rightArrow");
@@ -199,7 +199,7 @@ namespace Launchpad.Forms
             //
             // previousImageButton
             //
-            this.previousImageButton.Location = new Point(145, 466);
+            this.previousImageButton.Location = new Point(145, 491);
             this.previousImageButton.Size = new Size(42, 22);
             this.previousImageButton.TabIndex = 3;
             this.previousImageButton.Image = (Image) _resources.GetObject("$this.leftArrow");
@@ -212,14 +212,14 @@ namespace Launchpad.Forms
             //
             this.imageNumberLabel.Anchor =
                 ((AnchorStyles) ((((AnchorStyles.Top | AnchorStyles.Bottom) | AnchorStyles.Left) | AnchorStyles.Right)));
-            this.imageNumberLabel.Location = new Point(197, 470);
+            this.imageNumberLabel.Location = new Point(197, 495);
             this.imageNumberLabel.Size = new Size(50, 14);
             this.imageNumberLabel.Font = new Font("Verdana", 8F, FontStyle.Bold);
             this.imageNumberLabel.TextAlign = ContentAlignment.MiddleCenter;
             //
             // saveImageButton
             //
-            this.saveImageButton.Location = new Point(398, 466);
+            this.saveImageButton.Location = new Point(398, 491);
             this.saveImageButton.Size = new Size(30, 22);
             this.saveImageButton.TabIndex = 4;
             this.saveImageButton.Image = (Image) _resources.GetObject("$this.saveImage");
@@ -233,7 +233,7 @@ namespace Launchpad.Forms
             this.components = new Container();
             this.AutoScaleMode = AutoScaleMode.Font;
             this.BackColor = Color.White;
-            this.ClientSize = new Size(442, 500);
+            this.ClientSize = new Size(442, 525);
             this.Controls.Add(this.rocketDetailsButton);
             this.Controls.Add(this.missionMediaButton);
             this.Controls.Add(this.rocketNameHeaderLabel);

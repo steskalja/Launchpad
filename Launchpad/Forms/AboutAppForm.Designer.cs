@@ -52,7 +52,7 @@ namespace Launchpad.Forms
             this.components = new Container();
             this.AutoScaleMode = AutoScaleMode.Font;
             this.BackColor = Color.White;
-            this.ClientSize = new Size(400, 430);
+            this.ClientSize = new Size(400, 440);
             this.Controls.Add(this.logoImageLabel);
             this.Controls.Add(this.aboutAppLabel);
             this.Text = $"—{Application.ProductName}—";

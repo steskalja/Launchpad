@@ -31,7 +31,7 @@ namespace Launchpad.Forms
             //
             this.textBox.Font = new System.Drawing.Font("Verdana", 8F);
             this.textBox.Location = new System.Drawing.Point(0, 0);
-            this.textBox.Size = new System.Drawing.Size(400, 250);
+            this.textBox.Size = new System.Drawing.Size(500, 200);
             this.textBox.Multiline = true;
             this.textBox.ScrollBars = ScrollBars.Vertical;
             this.textBox.ReadOnly = true;
@@ -42,7 +42,7 @@ namespace Launchpad.Forms
             this.components = new Container();
             this.AutoScaleMode = AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(400, 250);
+            this.ClientSize = new System.Drawing.Size(500, 200);
             this.Controls.Add(this.textBox);
             this.Text = $"—{Application.ProductName}—";
             this.MinimizeBox = false;

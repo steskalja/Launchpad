@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.ComponentModel;
 using System.Drawing.Imaging;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Launchpad.Util;
@@ -28,7 +29,9 @@ namespace Launchpad.Forms
         private void ShowRocketData()
         {
             rocketNameLabel.Text = _missionData.Rocket.RocketName;
-            launchDateLabel.Text = _missionData.LaunchDateLocal.ToString();
+            launchDateLabel.Text = $"{_missionData.LaunchDateLocal} Local\n" +
+                                   $"{_missionData.LaunchDateUtc} UTC\n" +
+                                   $"{_missionData.LaunchDateUnix} Unix";
             launchSiteNameLabel.Text = _missionData.LaunchSite.SiteLongName;
 
             switch (_missionData.Rocket.RocketName)
@@ -96,22 +99,26 @@ namespace Launchpad.Forms
 
         private void ShowMediaData(int imageNumber)
         {
+            DisableMediaControls();
+            //
             if (_imagesInMedia != 0)
             {
                 ShowMediaControls();
                 imageNumberLabel.Text = $"{imageNumber + 1}/{_imagesInMedia}";
                 _image = Task.Run(() =>
                     HttpUtil.StreamUrlToImage(_missionData.Links.FlickrImages[imageNumber])).Result;
-                mediaImageLabel.Image = ImageUtil.ResizeImageAndKeepRatio(_image, 418, 405);
+                mediaImageLabel.Image = ImageUtil.ResizeImageAndKeepRatio(_image, 418, 430);
             }
             else
             {
-                MessageBox.Show("Images are unavailable!",
+                MessageBox.Show("Images are not available!",
                     "—Launchpad—", MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
                 rocketDetailsButton_Click(null, null);
                 rocketDetailsButton.Select();
             }
+            //
+            EnableMediaControls();
         }
 
         private void ShowRocketControls()
@@ -162,6 +169,22 @@ namespace Launchpad.Forms
             saveImageButton.Visible = false;
         }
         
+        private void EnableMediaControls()
+        {
+            nextImageButton.Enabled = true;
+            previousImageButton.Enabled = true;
+            saveImageButton.Enabled = true;
+            mediaImageLabel.Focus();
+        }
+
+        private void DisableMediaControls()
+        {
+            nextImageButton.Enabled = false;
+            previousImageButton.Enabled = false;
+            saveImageButton.Enabled = false;
+            mediaImageLabel.Focus();
+        }
+        
         //
 
         private void rocketDetailsButton_Click(object sender, EventArgs e)
@@ -208,7 +231,7 @@ namespace Launchpad.Forms
                 RestoreDirectory = true,
                 DefaultExt = "jpg",
                 Filter = "JPEG|*.jpg",
-                FileName = $"{_missionData.MissionName}-{_imageNumber + 1}",
+                FileName = Regex.Replace($"{_missionData.MissionName}-{_imageNumber + 1}", @"\s+", "_")
             };
             if (saveDialog.ShowDialog() == DialogResult.OK)
             {

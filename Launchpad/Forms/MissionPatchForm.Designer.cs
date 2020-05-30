@@ -27,6 +27,7 @@ namespace Launchpad.Forms
         {
             //Application.EnableVisualStyles();
             this.missionPatchImageLabel = new Label();
+            this.saveMissionPatchImageButton = new Button();
             this.SuspendLayout();
             //
             // missionPatchImageLabel
@@ -37,6 +38,16 @@ namespace Launchpad.Forms
             this.missionPatchImageLabel.Size = new Size(512, 512);
             this.missionPatchImageLabel.Click += new EventHandler(this.missionPatchImageLabel_Click);
             //
+            // saveMissionPatchImageButton
+            //
+            this.saveMissionPatchImageButton.Location = new Point(470, 478);
+            this.saveMissionPatchImageButton.Size = new Size(30, 22);
+            this.saveMissionPatchImageButton.Image = (Image) _resources.GetObject("$this.saveImage");
+            this.saveMissionPatchImageButton.ImageAlign = ContentAlignment.MiddleCenter;
+            this.saveMissionPatchImageButton.UseCompatibleTextRendering = true;
+            this.saveMissionPatchImageButton.UseVisualStyleBackColor = true;
+            this.saveMissionPatchImageButton.Click += new EventHandler(this.saveMissionPatchImageButton_Click);
+            //
             // MissionPatchForm
             //
             this.components = new Container();
@@ -44,6 +55,7 @@ namespace Launchpad.Forms
             this.BackColor = Color.White;
             this.ClientSize = new Size(512, 512);
             this.Controls.Add(this.missionPatchImageLabel);
+            this.Controls.Add(this.saveMissionPatchImageButton);
             this.Text = $"—{Application.ProductName}—";
             this.MinimizeBox = false;
             this.MaximizeBox = false;
@@ -51,10 +63,12 @@ namespace Launchpad.Forms
             this.ShowInTaskbar = false;
             this.ResumeLayout(false);
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.Select();
         }
 
         #endregion
         
         private Label missionPatchImageLabel;
+        private Button saveMissionPatchImageButton;
     }
 }

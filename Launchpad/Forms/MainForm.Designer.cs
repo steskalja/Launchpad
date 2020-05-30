@@ -44,7 +44,7 @@ namespace Launchpad.Forms
 	        // currentMissionButton
 	        //
 	        this.currentMissionButton.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
-	        this.currentMissionButton.Location = new Point(50, 12);
+	        this.currentMissionButton.Location = new Point(75, 12);
 	        this.currentMissionButton.Size = new Size(200, 22);
 	        this.currentMissionButton.TabIndex = 1;
 	        this.currentMissionButton.Text = "CURRENT MISSION";
@@ -55,7 +55,7 @@ namespace Launchpad.Forms
 	        //
 	        // previousMissionButton
 	        //
-	        this.previousMissionButton.Location = new Point(12, 12);
+	        this.previousMissionButton.Location = new Point(37, 12);
 	        this.previousMissionButton.Size = new Size(40, 22);
 	        this.previousMissionButton.TabIndex = 0;
 	        this.previousMissionButton.Image = (Image) _resources.GetObject("$this.leftArrow");
@@ -66,7 +66,7 @@ namespace Launchpad.Forms
 	        //
 	        // nextMissionButton
 	        //
-	        this.nextMissionButton.Location = new Point(248, 12);
+	        this.nextMissionButton.Location = new Point(273, 12);
 	        this.nextMissionButton.Size = new Size(40, 22);
 	        this.nextMissionButton.TabIndex = 2;
 	        this.nextMissionButton.Image = (Image) _resources.GetObject("$this.rightArrow");
@@ -79,8 +79,8 @@ namespace Launchpad.Forms
 	        //
 	        this.missionPatchImageLabel.Anchor =
 		        ((AnchorStyles) ((((AnchorStyles.Top | AnchorStyles.Bottom) | AnchorStyles.Left) | AnchorStyles.Right)));
-	        this.missionPatchImageLabel.Location = new Point(12, 45);
-	        this.missionPatchImageLabel.Size = new Size(276, 256);
+	        this.missionPatchImageLabel.Location = new Point(47, 47);
+	        this.missionPatchImageLabel.Size = new Size(256, 256);
 	        this.missionPatchImageLabel.Click += new EventHandler(this.missionPatchImageLabel_Click);
 	        //
 	        // missionNameLabel
@@ -90,9 +90,8 @@ namespace Launchpad.Forms
 	        this.missionNameLabel.AutoEllipsis = true;
 	        this.missionNameLabel.Font = new Font("Verdana", 12F);
 	        this.missionNameLabel.Location = new Point(12, 315);
-	        this.missionNameLabel.Size = new Size(276, 20);
+	        this.missionNameLabel.Size = new Size(326, 20);
 	        this.missionNameLabel.TextAlign = ContentAlignment.TopCenter;
-	        this.missionNameLabel.Click += new EventHandler(this.missionNameLabel_Click);
 	        //
 	        // missionDetailsLabel
 	        //
@@ -101,7 +100,7 @@ namespace Launchpad.Forms
 	        this.missionDetailsLabel.AutoEllipsis = true;
 	        this.missionDetailsLabel.Font = new Font("Tahoma", 9F);
 	        this.missionDetailsLabel.Location = new Point(12, 345);
-	        this.missionDetailsLabel.Size = new Size(276, 115);
+	        this.missionDetailsLabel.Size = new Size(326, 115);
 	        this.missionDetailsLabel.TextAlign = ContentAlignment.TopCenter;
 	        this.missionDetailsLabel.Click += new EventHandler(this.missionDetailsLabel_Click);
 	        //
@@ -112,9 +111,8 @@ namespace Launchpad.Forms
 	        this.vehicleStatusLabel.AutoEllipsis = true;
 	        this.vehicleStatusLabel.Font = new Font("Verdana", 8F, FontStyle.Bold);
 	        this.vehicleStatusLabel.Location = new Point(12, 470);
-	        this.vehicleStatusLabel.Size = new Size(276, 14);
+	        this.vehicleStatusLabel.Size = new Size(326, 14);
 	        this.vehicleStatusLabel.TextAlign = ContentAlignment.TopCenter;
-	        this.vehicleStatusLabel.Click += new EventHandler(this.vehicleStatusLabel_Click);
 	        //
 	        // missionStatusHeaderLabel
 	        //
@@ -123,7 +121,7 @@ namespace Launchpad.Forms
 	        this.missionStatusHeaderLabel.AutoEllipsis = true;
 	        this.missionStatusHeaderLabel.Font = new Font("Tahoma", 8F, FontStyle.Underline);
 	        this.missionStatusHeaderLabel.Location = new Point(12, 498);
-	        this.missionStatusHeaderLabel.Size = new Size(276, 14);
+	        this.missionStatusHeaderLabel.Size = new Size(326, 14);
 	        this.missionStatusHeaderLabel.Text = "__MISSION STATUS__";
 	        this.missionStatusHeaderLabel.TextAlign = ContentAlignment.TopCenter;
 	        //
@@ -134,14 +132,13 @@ namespace Launchpad.Forms
 	        this.missionStatusLabel.AutoEllipsis = true;
 	        this.missionStatusLabel.Font = new Font("Verdana", 8F, FontStyle.Bold);
 	        this.missionStatusLabel.Location = new Point(12, 517);
-	        this.missionStatusLabel.Size = new Size(276, 14);
+	        this.missionStatusLabel.Size = new Size(326, 14);
 	        this.missionStatusLabel.TextAlign = ContentAlignment.TopCenter;
-	        this.missionStatusLabel.Click += new EventHandler(this.missionStatusLabel_Click);
 	        //
 	        // missionDataButton
 	        //
 	        this.missionDataButton.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
-	        this.missionDataButton.Location = new Point(50, 545);
+	        this.missionDataButton.Location = new Point(75, 545);
 	        this.missionDataButton.Size = new Size(200, 22);
 	        this.missionDataButton.TabIndex = 3;
 	        this.missionDataButton.Text = "MISSION DATA";
@@ -153,7 +150,7 @@ namespace Launchpad.Forms
 	        // aboutLaunchpadButton
 	        //
 	        this.aboutLaunchpadButton.Font = new Font("Tahoma", 8F);
-	        this.aboutLaunchpadButton.Location = new Point(50, 572);
+	        this.aboutLaunchpadButton.Location = new Point(75, 572);
 	        this.aboutLaunchpadButton.Size = new Size(200, 22);
 	        this.aboutLaunchpadButton.TabIndex = 4;
 	        this.aboutLaunchpadButton.Text = "About Launchpad";
@@ -166,7 +163,7 @@ namespace Launchpad.Forms
 	        this.components = new Container();
 	        this.AutoScaleMode = AutoScaleMode.Font;
 	        this.BackColor = Color.White;
-	        this.ClientSize = new Size(300, 622);
+	        this.ClientSize = new Size(350, 612);
 	        this.Controls.Add(this.currentMissionButton);
 	        this.Controls.Add(this.previousMissionButton);
 	        this.Controls.Add(this.nextMissionButton);

@@ -16,7 +16,7 @@
 
 #### Current status
 
-* stable (21-May-20)
+* stable (30-May-20)
 
 ## Requirements
 
